@@ -1,0 +1,52 @@
+
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: od_system
+      MYSQL_USER: od_user
+      MYSQL_PASSWORD: od_pass
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./db:/docker-entrypoint-initdb.d
+    ports:
+      - "3307:3306"
+
+  backend:
+    build: ./backend
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=db
+      - DB_USER=od_user
+      - DB_PASS=od_pass
+      - DB_NAME=od_system
+      - JWT_SECRET=replace_this_jwt_secret
+      - SMTP_HOST=mailhog
+      - SMTP_PORT=1025
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+    volumes:
+      - ./backend:/usr/src/app
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:4000/api
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/usr/src/app
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "8025:8025"
+      - "1025:1025"
+
+volumes:
+  db_data:
