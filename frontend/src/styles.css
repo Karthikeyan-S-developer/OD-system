@@ -1,0 +1,85 @@
+:root{
+	--bg-0: #0f1724; /* deep navy */
+	--bg-1: linear-gradient(135deg,#0f1724 0%,#0b3b66 50%,#064b7a 100%);
+	--card: rgba(255,255,255,0.06);
+	--glass: rgba(255,255,255,0.04);
+	--muted: rgba(255,255,255,0.75);
+	--accent: #4fc3f7; /* bright cyan */
+	--accent-2: #7b61ff; /* purple accent */
+	--success: #37b24d;
+	--danger: #ff6b6b;
+}
+
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{
+	font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+	margin:0;padding:0;
+	background: var(--bg-1);
+	color:var(--muted);
+	-webkit-font-smoothing:antialiased;
+	-moz-osx-font-smoothing:grayscale;
+}
+
+.container{
+	max-width:1100px;margin:28px auto;padding:28px;background:transparent;border-radius:12px;
+}
+
+nav.navbar{
+	background:transparent;border-bottom:1px solid rgba(255,255,255,0.04);backdrop-filter:blur(6px);
+}
+.navbar-brand{font-weight:700;color:var(--accent)!important}
+.nav-link{color:rgba(255,255,255,0.85)!important}
+
+.glass-card{
+	background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+	border: 1px solid rgba(255,255,255,0.04);
+	padding:20px;border-radius:12px;color:var(--muted);
+	box-shadow: 0 6px 18px rgba(2,6,23,0.6);
+}
+
+.hero{
+	padding:28px;border-radius:12px;background:linear-gradient(90deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01));
+}
+
+h1,h2,h3{color:#fff}
+
+/* Forms */
+.form-control{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#fff}
+.form-control:focus{box-shadow:0 0 0 4px rgba(79,195,247,0.08);border-color:var(--accent)}
+.btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:none}
+.btn-primary:hover{filter:brightness(1.05)}
+
+.btn-outline{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+
+.table{width:100%;border-collapse:collapse;color:rgba(255,255,255,0.92)}
+.table th,.table td{padding:12px;border-bottom:1px solid rgba(255,255,255,0.03)}
+.table thead th{color:rgba(255,255,255,0.85);font-weight:600}
+
+.badge{display:inline-block;padding:6px 10px;border-radius:999px;font-size:13px}
+.badge-pending{background:rgba(255,193,7,0.12);color:#ffc107}
+.badge-approved{background:rgba(40,167,69,0.12);color:var(--success)}
+.badge-rejected{background:rgba(220,53,69,0.08);color:var(--danger)}
+
+.alert{border-radius:8px}
+
+/* small helpers */
+.muted{color:rgba(255,255,255,0.6)}
+.mb-3{margin-bottom:1rem}
+.mt-3{margin-top:1rem}
+.p-5{padding:3rem}
+
+/* Responsive tweaks */
+@media (max-width:768px){
+	.container{padding:16px}
+	.hero{padding:16px}
+}
+
+/* subtle animated gradient background */
+body::before{
+	content:'';position:fixed;inset:0;z-index:-1;background:radial-gradient(circle at 10% 20%, rgba(123,97,255,0.12), transparent 10%), radial-gradient(circle at 90% 80%, rgba(79,195,247,0.08), transparent 10%);
+	pointer-events:none;mix-blend-mode:screen
+}
+
+/* keep default small tweaks from previous theme */
+.container{max-width:900px}
